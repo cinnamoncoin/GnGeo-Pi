@@ -245,10 +245,16 @@ AC_CHECK_FUNCS([atexit floor gettimeofday memset mkdir pow strchr strstr strtoul
            AC_DEFINE(PROCESSOR_ADM64, 1, [Define if you have an x86_64 processor])
            ALIGNLONGS=0
 	   proc_x64=true
-		CFLAGS="$CFLAGS -O3 -fstrength-reduce -frerun-loop-opt -Wall -Wno-unused -funroll-loops \
+           CFLAGS="$CFLAGS -O3 -fstrength-reduce -Wall -Wno-unused -funroll-loops \
                     -ffast-math  -fexpensive-optimizations \
-                     -malign-double -fomit-frame-pointer -g \
+                    -fomit-frame-pointer -g \
 		    -fno-strict-aliasing -pipe -DCPU=$target_cpu"
+           ## LLVM has C99 semantics for the "inline" keyword
+           if $CC --version 2>/dev/null | grep -q LLVM; then
+              CFLAGS="$CFLAGS -std=gnu89"
+           else
+              CFLAGS="$CFLAGS -frerun-loop-opt -malign-double"
+           fi
            ;;
     sparc*) AC_MSG_RESULT(Turning on sparc processor optimisations)
            AC_DEFINE(PROCESSOR_SPARC, 1, [Define if you have a sparc processor])
