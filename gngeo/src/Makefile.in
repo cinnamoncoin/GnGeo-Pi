@@ -382,7 +382,7 @@ clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 gngeo$(EXEEXT): $(gngeo_OBJECTS) $(gngeo_DEPENDENCIES) $(EXTRA_gngeo_DEPENDENCIES) 
 	@rm -f gngeo$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(gngeo_OBJECTS) $(gngeo_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) $(gngeo_OBJECTS) $(gngeo_LDADD) $(LIBS) -lemudbg
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

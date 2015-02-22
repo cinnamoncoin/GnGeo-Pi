@@ -44,6 +44,7 @@
 #include "frame_skip.h"
 #include "gnutil.h"
 #include "roms.h"
+#include <libgen.h>
 
 #ifdef USE_GUI
 #include "gui_interf.h"
@@ -146,7 +147,7 @@ int main(int argc, char *argv[])
     }
 
     if (conf.debug)
-	    debug_loop();
+	    emudbg_loop();
     else
 	    main_loop();
 
