@@ -28,6 +28,7 @@
 #include "gp2x.h"
 #include "ym2610-940/940shared.h"
 #endif
+#include <libgen.h>
 
 /* Prototype */
 void kof98_decrypt_68k(GAME_ROMS *r);
